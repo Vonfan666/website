@@ -107,6 +107,7 @@ class Video(models.Model):
     status_choice=(
         (0,"下线"),
         (1,"上线"),
+        
     )
 
     level_choice=(

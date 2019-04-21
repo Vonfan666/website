@@ -1,0 +1,163 @@
+
+{% extends "home.html" %}  <!--导入模板-->
+{% load staticfiles %}
+
+
+<style>
+{% block style %}
+
+
+    .teacherMessageCode{
+        position: relative;
+        margin-top: 30px;
+        border-top: 2px solid red;
+        margin-left: 10%;
+        margin-right: 10%;
+        width:80%;
+        height: 300px;
+
+
+    }
+    .teacherMessageLeft{
+        height: 300px;
+        width: 15%;
+        line-height: 300px;
+        display: inline-block;
+
+
+
+
+
+    }
+
+    .teacherMessageCode img{
+        height: 70%;
+        width: 100%;
+        border-radius: 50%;
+
+
+
+    }
+    .teacherMessageRight{
+        display: inline-block;
+        width: 80%;
+        margin-left: 5%;
+        position: absolute;
+        margin-right: 10%;
+        margin-top: 60px;
+
+
+
+
+
+    }
+
+    {% endblock %}
+</style>
+
+
+
+
+{% block addDiv %}
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.0.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.0.teacherName }}</h3>
+            <p>{{ data.0.teacherTitle }}</p>
+            <p>
+                <span>{{ data.0.teacherLabel}}</span>
+            </p>
+            <p>{{ data.0.teacherContent }}</p>
+        </div>
+
+    </div>
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.1.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.1.teacherName }}</h3>
+            <p>{{ data.1.teacherTitle }}</p>
+            <p>
+                <span>{{ data.1.teacherLabel}}</span>
+            </p>
+            <p>{{ data.1.teacherContent }}</p>
+        </div>
+
+    </div>
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.2.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.2.teacherName }}</h3>
+            <p>{{ data.2.teacherTitle }}</p>
+            <p>
+                <span>{{ data.2.teacherLabel}}</span>
+            </p>
+            <p>{{ data.2.teacherContent }}</p>
+        </div>
+
+    </div>
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.3.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.3.teacherName }}</h3>
+            <p>{{ data.3.teacherTitle }}</p>
+            <p>
+                <span>{{ data.3.teacherLabel}}</span>
+            </p>
+            <p>{{ data.3.teacherContent }}</p>
+        </div>
+
+    </div>
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.4.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.4.teacherName }}</h3>
+            <p>{{ data.4.teacherTitle }}</p>
+            <p>
+                <span>{{ data.4.teacherLabel}}</span>
+            </p>
+            <p>{{ data.4.teacherContent }}</p>
+        </div>
+
+    </div>
+    <div class="teacherMessageCode">
+        <div class="teacherMessageLeft">
+            <img src="/{{ data.5.teacherImage }}" onerror="this.src='/{{ data.0.teacherImage }}'">
+        </div>
+        <div class="teacherMessageRight">
+            <h3>{{ data.5.teacherName }}</h3>
+            <p>{{ data.5.teacherTitle }}</p>
+            <p>
+                <span>{{ data.5.teacherLabel}}</span>
+            </p>
+            <p>{{ data.5.teacherContent }}</p>
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+
+{% block deletebody %}  <!--该区域数据不取-->
+{% endblock %}
+
+
+<script>
+{% block script %}
+    $(".head-text a").eq(1).css("background-color","red");
+    console.log("{{ data.0.teacherName }}");
+    console.log("{{ data.0.teacherImage }}");
+
+{% endblock %}
+</script>

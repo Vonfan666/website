@@ -1,0 +1,301 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+
+<style>
+    {% block studentDelete %}
+        .classification{
+        position: relative;
+        top: 80px;
+        margin-left: 10%;
+        margin-right: 10%;
+        width: 80%;
+{#        height: 142px;#}
+        border: 2px solid #dddddd;
+        border-top: 2px solid #ff9c00;
+
+
+{#        background-color: red;#}
+    }
+
+
+        .classification a{
+            text-decoration: none;
+            border: 1px solid #dddddd;
+            margin: 10px;
+            font-size: 15px;
+            color: #0f0f0f;
+            padding: 2px;
+        }
+        .classification h4{
+            margin-left: 30px;
+        }
+        .classification div{
+            margin-left: 10px;
+            margin-right: 10px;
+
+        }
+
+       .classification .ification{
+            border-top: 2px dashed #dddddd;
+            border-bottom: 2px dashed #dddddd;
+            padding-bottom: 5px;
+        }
+
+        .classification .level{
+            margin:3px 0 3px 10px;
+
+        }
+
+        .schoolLife1{
+
+            margin-top: 80px;
+        }
+
+        .textNumber{
+
+            margin-left: 10%;
+            margin-right: 10%;
+            height: 50px;
+            width: 80%;
+            margin-top: 100px;
+            background-color: #f3f3f3;
+            line-height: 50px;
+        }
+        .textNumber span{
+            margin-left: 10px;
+        }
+
+        .Video{
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+{#            display: flex;#}
+{#            justify-content: space-between;#}
+{#            flex-wrap: wrap;#}
+        }
+        .Video-class{
+            width: 33%;
+            display: inline-block;
+            margin-top: 20px;
+
+        }
+        .spanVideo{
+            width: 100%;
+        }
+        .spanVideo embed{
+            width: 100%;
+        }
+        .spanVideo iframe{
+            width: 100%;
+        }
+        .Video-a{
+            position: absolute;
+            height: 50px;
+            margin-top: -54px;
+            width: 26.4%;
+            background-color: red;
+        }
+
+        .PageFather{
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .Page{
+
+
+            margin-top: 50px;
+
+        }
+
+        .Page_ul li{
+            display: inline-block;
+            border: 4px solid #f3f3f3;
+            background-color: #f3f3f3;
+            margin: 0 -3px 0 -3px;
+            padding: 10px  15px 10px 15px;
+            border: 1px  solid black;
+
+        }
+        .li-page{
+            display: inline-block;
+            border: 4px solid #f3f3f3;
+            background-color: #f3f3f3;
+
+        }
+        .Page-a{
+            display: inline-block;
+            font-size: 20px;
+            text-decoration: none;
+        }
+        .page-inp{
+            width: 40px;
+            height: 40px;
+            margin-top: -30px;
+            padding-bottom: 1px;
+        }
+
+
+
+
+    {% endblock %}
+</style>
+<body>
+    {% block studentDeleteBody %}
+        <div class="classification" >
+            <div class="Direction" >  <!--方向-->
+                <h4 style="display: inline-block">分类:</h4>
+                            <a id="t0" href="{% url 'onlineVideo' %}?uid=0&cid={{ cid }}&lid={{ lid }}&pid=1">全部</a>
+                {%  for a  in  list_direction_data %}
+                    {% if lid %}
+                            <a id="t{{ a.id }}" href="{% url 'onlineVideo' %}?uid={{ a.id }}&cid=0&lid={{ lid }}&pid=1" style="line-height: 50px">{{ a.name }}</a>
+                    {% else %}
+                        <a id="t{{ a.id }}" href="{% url 'onlineVideo' %}?uid={{ a.id }}&cid=0&lid=0&pid=1" style="line-height: 50px">{{ a.name }}</a>
+                    {% endif %}
+                {% endfor %}
+
+            </div>
+
+            <div class="ification">
+                <h4 style="display: inline-block">方向:</h4>
+                    <a id="t0" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid=0&lid={{ lid }}&pid=1">全部</a>
+
+                {% if uid %}
+
+                    {% for  b  in  list_classification %}
+
+                        <a id="t{{ b.classification__id  }}" href="{% url 'onlineVideo' %}?uid={{ b.id }}&cid={{ b.classification__id }}&lid={{ lid }}&pid=1">{{ b.classification__name }}</a>
+                    {% endfor %}
+                {% else %}
+                    {% for  bb  in  list_classification_data %}
+
+                        <a id="t{{ bb.id }}" href="{% url 'onlineVideo' %}?uid=0&cid={{ bb.id}}&lid=0&pid=1">{{ bb.name }}</a>
+
+
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+            <div class="level">
+                <h4 style="display: inline-block">难度:</h4>
+                        <a id="t0" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid=0&pid=1">全部</a>
+                {% for  c  in  list_level %}
+                    {% if cid %}
+                        <a id="t{{ c.id }}" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ c.id }}&pid=1">{{ c }}</a>
+                    {% else %}
+                        <a id="t{{ c.id }}" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{  list_classification.0.classification__id }}&lid={{ c.id }}&pid=1">{{ c }}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="textNumber">
+            <span>共为您找到 {{ textNumber }} 个视频</span>
+        </div>
+    {% autoescape off %}
+        <div class="Video">
+    {#            <embed src="http://player.video.qiyi.com/8b89d9c3ec3535c93ceaded663cc91c2/0/0/v_19rr7zq9xw.swf-albumId=715375800-tvId=715375800-isPurchase=0-cnId=25" allowFullScreen="true" quality="high" width="480" height="350" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>#}
+    {##}
+                {% for vider  in  list_video %}
+                    <div class="Video-class">
+
+                    <span class="spanVideo">{{ vider.href }}</span>
+                    <span class="Video-a">
+                        {{ vider.title }}
+                    </span>
+
+                </div>
+                {% endfor %}
+{#                <div class="Video-class">#}
+{##}
+{#                    <span class="spanVideo">{{ list_video.0.href }}</span>#}
+{#                    <span class="Video-a">{{ list_video.0.title }}</span>#}
+{#                    #}
+{#                </div>#}
+{#                <div class="Video-class">#}
+{#                    <span class="spanVideo">{{ list_video.0.href }}</span>#}
+{##}
+{#                    <span class="Video-a">aaaaaaaaaaaaaaaaaaaa</span>#}
+{#                </div>#}
+{#                <div class="Video-class">#}
+{#                    <span class="spanVideo">{{ list_video.0.href }}</span>#}
+{##}
+{#                    <span class="Video-a">aaaaaaaaaaaaaaaaaaaa</span>#}
+{#                </div>#}
+            </div>
+        <div class="PageFather">
+            <div class="Page">
+            <ul class="Page_ul">
+                <li class="l-page" ><a href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ lid }}&pid={{ first_page }}">上一页</a></li>
+                {% for  a  in  pageNub %}
+                    <li class="li-page"><a href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ lid }}&pid={{ a }}">{{ a }}</a></li>
+                {% endfor %}
+                <li class="r-page"><a href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ lid }}&pid={{ last_page }}" >下一页</a></li>
+                <li>{{ pid }}/{{ totalPage }}</li>
+                &#160;
+
+                <input class="page-inp" type="text" value="">
+                <a  class="Page-a" style="text-decoration: none" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ lid }}&pid={{ pid }}" >&#160跳转</a>
+            </ul>
+
+        </div>
+        </div>
+
+
+    {% endautoescape %}
+        <div class="Page"></div>
+    {% endblock %}
+
+
+</body>
+
+
+<script>
+
+    {% block studentDeleteScript %}
+{#        console.log({{ nub }});#}
+{#        console.log({{ a }});#}
+        console.log({{ uid }});
+        console.log({{ cid }});
+        console.log({{ lid }});
+
+        $(".Direction #t{{ uid }}").css("background-color","#ff9c00");
+        $(".ification #t{{ cid }}").css("background-color","#FF9C00");
+        $(".level #t{{ lid }}").css("background-color","#FF9C00");
+        $(".spanVideo embed").attr("width","480").attr("height","350");
+        $(".spanVideo iframe").attr("width","480").attr("height","350");
+
+//"/websiteBefore/onlineVideo/?uid=0&cid=0&lid=0&pid=3"
+        $(".li-page a").each(function () {
+           if ($(this).text()=={{ pid }}){
+               $(this).parent().css("background-color","#FF9C00")
+           }
+        });
+
+        $(".Page-a").click(function () {
+           var pidc=$(".page-inp") .val();
+           if  (pidc==""){
+               pidc={{ pid }}
+           }
+           console.log("pidc");
+            var href="/websiteBefore/onlineVideo/?uid={{ uid }}&cid={{ cid }}&lid={{ lid }}&pid="+pidc;
+            console.log(href);
+            $(this).attr("href",href);
+
+        });
+
+
+
+
+    {% endblock %}
+
+
+    {% block script %}
+     $(".head-text a").eq(3).css("background-color","red");
+    {% endblock %}
+</script>
+
+
+

@@ -1,0 +1,68 @@
+<html>   
+<head>   
+<meta charset="utf-8"/>   
+<title>从上往下，从左往右</title>   
+<style>   
+html,body{ margin:0; border:0; padding:0; width:100%; height:100%; }   
+.parent{ display:block; background:gray; width:70%; height:100%; }
+.parent{
+    -webkit-column-width:150px;
+    -moz-column-width:100px;
+{#    -webkit-column-gap:30px;#}
+{#    -moz-column-gap:0;}#}
+    -webkit-column-count: 3;
+
+}
+
+
+.parent{
+
+        *white-space:nowrap;
+}
+.child{   
+    display:inline-block;
+
+    margin:10px 10px 10px 10px;
+    border:1px solid black;
+    padding:5px;
+    width: 100%;;
+    height:150px;
+    text-align:center;   
+    background:lightblue;   
+     /*ie8 竖直排列*/
+}   
+</style>   
+</head>   
+<body>   
+<div class="parent">   
+<div class="child">1</div>   
+<div class="child">2</div>   
+<div class="child">3</div>   
+<div class="child">4</div>   
+<div class="child">5</div>   
+<div class="child">6</div>   
+<div class="child">7</div>   
+<div class="child">8</div>   
+<div class="child">9</div>   
+<div class="child">10</div>   
+<div class="child">11</div>   
+<div class="child">12</div>   
+<div class="child">13</div>   
+<div class="child">14</div>   
+<div class="child">15</div>   
+<div class="child">16</div>   
+<div class="child">17</div>   
+<div class="child">18</div>   
+<div class="child">19</div>   
+<div class="child">20</div>   
+<div class="child">21</div>   
+<div class="child">22</div>   
+<div class="child">23</div>   
+</div>   
+</body>   
+</html> 
+--------------------- 
+作者：qq_小小少年 
+来源：CSDN 
+原文：https://blog.csdn.net/qq_35425276/article/details/79642289 
+版权声明：本文为博主原创文章，转载请附上博文链接！

@@ -1,0 +1,131 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+
+<style>
+    {% block studentDelete %}
+        .student-title{
+            position: relative;
+            top: 100px;
+            height: 200px;
+
+
+
+        }
+        .student-title p{
+            display: flex;
+            justify-content: center;
+
+        }
+        .schoolLife1{
+
+            position: absolute;
+
+        }
+{#        .studentMessageFather{#}
+{#            width: 80%;#}
+{#            margin:50px 10% 50px 10%;#}
+{##}
+{#        }#}
+        .studentMessage{
+            margin:50px 10% 50px 10%;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+
+
+        }
+
+        .studentMessageCode{
+            display: inline-block;
+            border: 2px solid #b2dba1;
+            padding: 10px;
+            width: 30%;
+            margin-bottom: 10px;
+        }
+        .studentMessage p{
+            width: 100%;
+
+        }
+        .studentMessage img{
+            width: 100%;
+            height: 300px;
+
+        }
+
+    {% endblock %}
+
+</style>
+
+
+<body>
+    {% block studentDeleteBody %}
+        <div class="student-title">
+            <p>关于牛牪犇教育</p>
+            <p style="color: #3c763d"><b>————</b></p>
+            <p>用责任和情怀关注IT教育一万年</p>
+            <p>致力于为有若干工作经验的IT从业人员提供深度、高端的相关进阶技术实战培训，帮助其在工作上能跳出底薪、低技术含量的泥潭。</p>
+        </div>
+{#        <div class="studentMessageFather">#}
+        <div class="studentMessage">
+
+        </div>
+{#        </div>#}
+    {% endblock %}
+
+</body>
+
+
+
+<script>
+    {% block studentDeleteScript %}
+    {% endblock %}
+    {% block script %}
+    $(".head-text a").eq(2).css("background-color","red");
+
+
+    $.ajax({
+        url:"{% url 'studentWorkMessage' %}" ,
+        type:"GET",
+        success:function (arg) {
+            data=JSON.parse(arg);
+            console.log(data);
+            console.log(data.list.length);
+            console.log(data.list[0].studentImage);
+
+            for (var i=0;i<data.list.length;i++){
+                console.log(1111);
+                    var eleDiv=$("<div></div>").addClass("studentMessageCode");
+
+                    eleDiv.append($("<p></p>").append($("<img>").attr("src","/"+data.list[i].studentImage)));
+                    eleDiv.append($("<p></p>").text("姓名："+data.list[i].studentName));
+                    eleDiv.append($("<p></p>").text("公司："+data.list[i].studentCompany));
+                    eleDiv.append($("<p></p>").text("薪资："+data.list[i].studentMoney+".00/月"));
+                    eleDiv.append($("<p></p>").text(data.list[i].studentContent));
+
+
+                    $(".studentMessage").append(eleDiv);
+
+
+
+
+
+
+{#                eleDiv.append($("<p></p>").append($("<img>").attr("src",data.list.i.studentImage)));#}
+{##}
+{#                eleDiv.append($("<p></p>").text(data.list.i.studentName));#}
+{#                eleDiv.append($("<p></p>").text(data.list.i.studentCompany));#}
+{#                eleDiv.append($("<p></p>").text(data.list.i.studentMoney));#}
+{#                eleDiv.append($("<p></p>").text(data.list.i.studentContent));#}
+{#                console.log(i)#}
+            }
+
+        }
+
+    });
+
+
+
+
+{% endblock %}
+</script>

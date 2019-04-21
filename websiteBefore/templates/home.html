@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>牛牪犇教育</title>
+    <link rel="icon" href="{% static 'files/image/logo.jpg' %}">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .head {
+
+            min-width: 900px;
+            position: fixed;
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            background-color: rgb(48, 59, 65);
+            display: flex;
+            justify-content: center;
+            z-index: 100;
+
+        }
+
+        .head-text {
+            width: 70%;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .head-text a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .log img {
+            height: 49px;
+            margin-top: -3px;
+
+        }
+        {% block studentDelete %}
+        .bannerFather {
+
+            display: flex;
+            justify-content: center;
+
+        }
+
+        .banner {
+            position: absolute;
+            top: 50px;
+            height: 400px;
+            width: 80%;
+            min-width: 800px;
+        }
+
+        .banner a img {
+            position: absolute;
+            height: 400px;
+            width: 100%;
+        }
+
+        .rightLeft {
+            font-size: 36px;
+            height: 100px;
+            width: 100%;
+            margin-top: 120px;
+
+        }
+
+        .rightLeft .left {
+            display: none;
+            float: left;
+            line-height: 100px;
+            background-color: #3e413d;
+
+        }
+
+        .rightLeft .right {
+            display: none;
+            float: right;
+            line-height: 100px;
+            background-color: #303b41;
+
+        }
+
+        .banner:hover .rightLeft .left {
+            display: block;
+            height: 100px;
+        }
+
+        .banner:hover .rightLeft .right {
+            display: block;
+            height: 100px;
+        }
+
+        .tagFather {
+            display: flex;
+            justify-content: center;
+        }
+
+        .tag {
+            position: absolute;
+            display: flex;
+            justify-content: space-around;
+            width: 300px;
+            height: 20px;
+            bottom: 30px;
+        }
+
+        .tag .active {
+            background-color: red;
+            border: 1px solid red;
+        }
+
+        .tag button {
+            border-radius: 3px;
+            width: 30px;
+            height: 5px;
+        }
+
+        .hide {
+            display: none;
+        }
+
+
+        .body {
+            position: relative;
+            top: 450px;
+
+        }
+        {% block style %}
+
+        .message {
+            margin-right: 10%;
+            margin-left: 10%;
+            height: 51px;
+            border-bottom: 2px solid #C5C5C5;
+            margin-top: 20px;
+{#            min-width: 800px;#}
+            margin-bottom: 20px;
+
+        }
+
+        .message h1 {
+            float: left;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid red;
+        }
+        .message a{
+
+            float: right;
+            padding-top: 20px;
+
+        }
+
+        .noticeBody{
+            display: flex;
+            justify-content: center;
+            margin-right: 10%;
+            margin-left: 10%;
+            background-color: #f7ffef;
+            height: 180px;
+        }
+
+        .noticeBody div{
+            margin-right: 10px;
+            margin-left: 10px;
+
+            width: 33.33%;
+
+        }
+        .noticeBody div h2{
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow:ellipsis;
+        }
+        .noticeBody div p{
+            display:  -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp:4;
+            overflow: hidden;
+            text-overflow:ellipsis;
+            overflow: hidden;
+        }
+
+        .noticeBody a{
+            float: right;
+
+        }
+
+{#        .classSay-flex{#}
+{#            margin-right: 10%;#}
+{#            margin-left: 10%;#}
+{#            height: 51px;#}
+{#            border-bottom: 2px solid #C5C5C5;#}
+{#            margin-top: 20px;#}
+{#            margin-bottom: 20px;#}
+{#        }#}
+
+        .classSay0{
+            margin-right: 10%;
+            margin-left: 10%;
+            height: 51px;
+            border-bottom: 2px solid #C5C5C5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            min-width: 100px;
+        }
+
+        .classSay0 h1{
+            float: left;
+            margin-top: 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid red;
+        }
+
+        .classSay0 a{
+            float: right;
+            margin-top: 20px;
+
+        }
+
+        .classSay-flex{
+            display: flex;
+            justify-content: center;
+            flex-wrap:wrap;
+{#            height: 300px;#}
+
+        }
+        .classSay1{
+            width: 25%;
+            height: 300px;
+{#            background-color: red;#}
+            margin-right: 15px;
+            margin-left: 15px;
+            margin-bottom: 10px;
+            border: 2px  solid darkgrey;
+        }
+
+
+        .userLog img{
+            width: 40%;
+            height: 150px;
+            border-radius: 50%;
+            margin-left: 30%;
+            margin-right: 30%;
+            margin-top: 10px;
+
+        }
+        .classSay1 h3{
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+
+        }
+        .classSay1 p{
+            margin-top: 10px;
+            margin-left: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+        }
+
+        .classWork{
+            display: inline-block;
+            position: relative;
+            width: 50%;
+            margin-left: 10%;
+
+        }
+        .classWorkTitle{
+            border-bottom: 2px solid #C5C5C5;
+            height: 71px;
+        }
+        .classWorkTitle h1{
+            border-bottom: 2px solid red;
+            padding-bottom: 10px;
+            float: left;
+
+        }
+
+        .classMessage{
+            position: absolute;
+            background-color: #f7ffef;
+            width: 100%;
+            height: 300px;
+        }
+        .moreMessageImage{
+            position: relative;
+            display: inline-block;
+{#            background-color: red;#}
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 25%;
+            height: 80%;
+
+        }
+        .moreMessageImage img{
+            height: 75%;
+            width: 100%;
+
+        }
+        .moreMessageImage p{
+            display: block;
+            margin-top: 10px;
+            color: #79ac45;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 15px;
+        }
+        .messageContent{
+            float: right;
+            margin-right: 12%;
+            margin-left: 10%;
+            width: 40%;
+            margin-top: 20px;
+
+
+        }
+
+        .moreMessage{
+            position: absolute;
+            display: inline-block;
+            width: 25%;
+            margin-left: 5%;
+
+
+        }
+        .moreMessageContent{
+
+            position: relative;
+            border-top: 2px  solid red;
+            line-height: 10px;
+            margin-top: 68px;
+        }
+        .bossMessage{
+            display: block;
+        }
+        .bossMessage #label span{
+            background-color: #f7ffef;
+            padding: 2px;
+            border-radius: 10%;
+        }
+        #money{
+            margin-top: -17px;
+            float: right;
+        }
+        #complateName{
+            display: inline-block;
+            width: 70%;
+
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+        #label span{
+            margin-right: 5px;
+        }
+
+        .studentMessage{
+            width: 80%;
+            height: 300px;
+            margin-left: 10%;
+            margin-top: 350px;
+        }
+        .students{
+            display: flex;
+            justify-content: space-around;
+            height: 100%;
+            width: 100%;
+
+
+        }
+        .student{
+            margin: 0 0.5%;
+            height: 90%;
+            border: 2px solid #c5c5c5;
+            text-align: center;
+
+
+        }
+        .student img{
+            padding: 5px;
+            width: 95%;
+            height: 70%;
+            margin: 5px 1% 0  1%;
+
+        }
+        .student .p1{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            height: 37px;
+            margin-top: 3px;
+
+        }
+        .student .p2{
+            margin-top: -8px;
+        }
+
+        .schoolLife{
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+        }
+
+
+        .schoolLifeTile{
+            border-bottom: 2px solid #C5C5C5;
+            height: 70px;
+        }
+        .schoolLifeTile h1{
+            display: inline-block;
+            border-bottom: 2px solid red;
+            padding-bottom: 9px;
+            float: left;
+
+        }
+
+        .schoolLifeImage{
+            width: 101%;
+            display: flex;
+            justify-content: space-around;
+        }
+        .schoolLifeImage div img{
+            height: 350px;
+            width: 95%;
+        }
+
+        {% endblock %}
+        {% endblock %}
+        .schoolLife1{
+            margin-left: 10%;
+            margin-right: 10%;
+            width: 80%;
+        }
+        .footer{
+            margin-top: 50px;
+            border-top: 2px solid #4a94be;
+            height: 100px;
+            width: 100%;
+
+
+        }
+
+        .footer .footerText1{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center ;
+        }
+        .footer .footerText1 span{
+            width: 40%;
+            display: flex;
+            justify-content: space-around ;
+            min-width: 400px;
+
+        }
+        .footer .footerText1 span a{
+            color: #0f0f0f;
+        }
+        .footer .footerText2{
+            display: flex;
+            justify-content: center ;
+
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="head">
+    <div class="log">
+        <img src="{% static 'files/image/log.png' %}">
+    </div>
+    <div class="head-text">
+        <a href="{% url 'home' %}">&ensp;&ensp;首页&ensp;&ensp; </a>
+        <a href="{% url 'teacherTeam' %}">师资团队</a>
+        <a href="{% url 'studentWork' %}">学员就业</a>
+        <a href="{% url 'onlineVideo' %}?uid=0&cid=0&lid=0&pid=1">在线视频</a>
+        <a href="#">学习资源</a>
+        <a href="#">常见问题</a>
+        <a href="{% url 'aboutSelf' %}">关于我们</a>
+        <a href="#" class="glyphicon glyphicon-headphones" style="font-size: 16px;line-height: 3"> 13590283182</a>
+    </div>
+</div>
+
+{% block studentDeleteBody %}
+<div class="bannerFather">
+    <div class="banner">
+
+        <div class="bannerTwo">
+            <a href="#" class=""><img src="{% static 'files/image/banner1.jpg' %}" alt="第一张轮播图"></a>
+            <a href="#" class=""><img src="{% static 'files/image/banner2.jpg' %}" alt="第一张轮播图"></a>
+            <a href="https://www.baidu.com" class=""><img src="{% static 'files/image/banner3.jpg' %}" alt="第一张轮播图"></a>
+            <a href="#" class=""><img src="{% static 'files/image/banner4.jpg' %}" alt="第一张轮播图"></a>
+            <a href="#" class=""><img src="{% static 'files/image/banner5.jpg' %}" alt="第一张轮播图"></a>
+            <a href="#" class=""><img src="{% static 'files/image/banner6.jpg' %}" alt="第一张轮播图"></a>
+        </div>
+
+        <div class="rightLeft">
+            <span class="glyphicon glyphicon-chevron-left  left"></span>
+            <span class="glyphicon glyphicon-chevron-right  right " onclick="rightMethod()"></span>
+        </div>
+        <div class="tagFather">
+            <div class="tag">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="body">
+    {% block addDiv %}
+    {% endblock %}
+    {% block deletebody %}
+    <div class="notice">
+        <div class="message">
+            <h1>最新消息</h1>
+            <a >历史消息>></a>
+        </div>
+        <div class="noticeBody">
+            <div>
+               <h2>{{ list.0.title }}</h2>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&#160;&#160;&#160; {{ list.0.content }}</p>
+                <a class="">查看更多</a>
+
+            </div>
+            <div>
+                <h2>{{ list.1.title }}</h2>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&#160;&#160;&#160; {{ list.1.content }}</p>
+                <a class="">查看更多</a>
+            </div>
+            <div>
+                <h2>{{ list.2.title }}</h2>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&#160;&#160;&#160; python{{ list.2.content }}</p>
+                <a class="">查看更多</a>
+            </div>
+
+        </div>
+    </div>
+    <div class="classSay">
+        <div class="classSay0">
+            <h1>课程介绍</h1>
+            <a>更多课程>></a>
+        </div>
+        <div class="classSay-flex">
+            <div class="classSay1">
+                <div class="userLog">
+                    <img src='{% static classImage.0 %}'>
+
+                </div>
+                <h3>{{ classSay.0.classSayName }}</h3>
+                <p>{{ classSay.0.classSayContent }}</p>
+            </div>
+            <div class="classSay1">
+                <div class="userLog">
+                    <img src='{% static classImage.1 %}'>
+
+                </div>
+
+                <h3>{{ classSay.1.classSayName }}</h3>
+                <p>{{ classSay.1.classSayContent }}</p>
+            </div>
+            <div class="classSay1">
+                <div class="userLog">
+                    <img src='{% static classImage.2 %}'>
+
+                </div>
+
+                <h3>{{ classSay.2.classSayName }}</h3>
+                <p>{{ classSay.2.classSayContent }}</p>
+            </div>
+            <div class="classSay1">
+               <div class="userLog">
+                    <img src='{% static classImage.3 %}'>
+
+                </div>
+
+                <h3>{{ classSay.3.classSayName }}</h3>
+                <p>{{ classSay.3.classSayContent }}</p>
+            </div>
+            <div class="classSay1">
+                <div class="userLog">
+                    <img src='{% static classImage.4 %}'>
+
+                </div>
+
+                <h3>{{ classSay.4.classSayName }}</h3>
+                <p>{{ classSay.4.classSayContent }}</p>
+            </div>
+            <div class="classSay1">
+                <div class="userLog">
+                    <img src='{% static classImage.5 %}'>
+
+                </div>
+
+                <h3>{{ classSay.5.classSayName }}</h3>
+                <p>{{ classSay.5.classSayContent }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="classClass">
+        <div class="classWork">
+            <div class="classWorkTitle">
+                <h1>学员就业</h1>
+    {#            <a href="#">查看更多>></a>#}
+            </div>
+            <div class="classMessage">
+                <div class="moreMessageImage">
+                    <img src="{% static 'files/classSay/1.jpg' %}">
+                    <p class="glyphicon glyphicon-yen">:20000.00</p>
+                    <p class="glyphicon glyphicon-map-marker">:深圳市创维天桥深圳市创维天桥深圳市创维天桥</p>
+                </div>
+                <div class="messageContent">
+                    <h5 class="name">小莹莹</h5>
+                    <p class="leve">性别：女</p>
+                    <p class="content">感谢政府，感谢党。 感谢公司，感谢厂。 感谢你们，解决麻烦。 让我下班回家，床上躺。 感谢苍天，感谢地。 感谢客户，好脾气。 感谢老大，工作仔细。 免除加班感受，夜寒意。</p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="moreMessage">
+            <div class="moreMessageContent">
+                <h1>招聘信息</h1>
+            </div>
+            <div class="bossMessage">
+{#                <div class="bossMessageContents">#}
+{#                    <span>#}
+{#                        <a id="complateName">云易恒基云易恒基云易恒基云易恒基云易恒基云易恒基</a>#}
+{#                        <a id="money" style="float: right">￥:1900.00</a>#}
+{#                    </span>#}
+{#                    <p id="label">#}
+{#                        <span>python</span>#}
+{#                        <span>接口自动化</span>#}
+{#                        <span>UI自动化</span>#}
+{#                    </p>#}
+{#                </div>#}
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+    <div class="studentMessage">
+        <div class="students">
+            <div class="student">
+                <img src= "{{studentsMessage.0.studentImage}}">
+                <p class="p1">云易恒基有限公司</p>
+                <p class="p2">19999/月</p>
+            </div>
+            <div class="student">
+                <img src= "">
+                <p></p>
+                <p></p>
+            </div>
+            <div class="student">
+                <img src= "{% static 'files/image/banner1.jpg' %}">
+                <p></p>
+                <p></p>
+            </div>
+            <div class="student">
+                <img src= "{% static 'files/image/banner1.jpg' %}">
+                <p></p>
+                <p></p>
+            </div>
+            <div class="student">
+                <img src= "{% static 'files/image/banner1.jpg' %}">
+                <p></p>
+                <p></p>
+            </div>
+            <div class="student">
+                <img src= "{% static 'files/image/banner1.jpg' %}">
+                <p></p>
+                <p></p>
+            </div>
+        </div>
+    </div>
+    <div class="schoolLife">
+        <div class="schoolLifeTile">
+            <h1>校园生活</h1>
+        </div>
+        <div class="schoolLifeImage">
+            <div><img class="lifeImage" src="{% static 'files/classSay/微信图片_20190331222340.jpg' %}"></div>
+            <div><img class="lifeImage" src="{% static 'files/classSay/微信图片_20190331222340.jpg' %}"></div>
+            <div><img class="lifeImage" src="{% static 'files/classSay/微信图片_20190331222340.jpg' %}"></div>
+            <div><img class="lifeImage" src="{% static 'files/classSay/微信图片_20190331222340.jpg' %}"></div>
+        </div>
+
+
+    </div>
+    {% endblock %}
+{% endblock %}
+    <div class="schoolLife1">
+        <div class="footer">
+                <p class="footerText1">
+                    <span>
+                    <a>关于我们</a>
+                    <a>联系我们</a>
+                    <a>招贤纳士</a>
+                    <a>牛牪犇教育</a>
+                    <a>意见反馈</a>
+                        </span>
+                </p>
+                <p class="footerText2">
+                    京ICP备01008611号
+                </p>
+
+        </div>
+    </div>
+
+</div>
+</body>
+<script src="{% static 'js/jquery-3.1.1.js' %}"></script>
+
+<script>
+    {% block studentDeleteScript %}
+    function switchCode(listN) {
+        switch (listN){
+            case 0:ele.children("img").attr("src","/"+"{{ studentsMessage.0.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.0.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.0.studentMoney  }}");break;
+
+            case 1:ele.children("img").attr("src","/"+"{{ studentsMessage.1.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.1.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.1.studentMoney  }}");break;
+
+            case 2:ele.children("img").attr("src","/"+"{{ studentsMessage.2.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.2.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.2.studentMoney  }}");break;
+
+            case 3:ele.children("img").attr("src","/"+"{{ studentsMessage.3.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.3.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.3.studentMoney  }}");break;
+
+            case 4:ele.children("img").attr("src","/"+"{{ studentsMessage.4.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.4.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.4.studentMoney  }}");break;
+
+            case 5:ele.children("img").attr("src","/"+"{{ studentsMessage.5.studentImage }}");ele.children("p").eq(0).text("{{ studentsMessage.5.studentCompany  }}");ele.children("p").eq(1).text("{{ studentsMessage.5.studentMoney  }}");break;
+
+            default:console.log("错误")
+        }
+    }
+
+    var tagNum = $(".bannerTwo a").length;
+    for (var i = 0; i < tagNum; i++) {
+        $(".tag").append("<button>");
+    }
+    var i = 0;
+    $(".tag button").first().addClass("active");
+    //点击底部图片标示按钮
+    $(".tag button").mouseover(function () {
+        $(this).siblings().removeClass("active");
+        $(this).addClass("active");
+        var index = $(this).index();
+        //修改图片
+        $(".bannerTwo a").eq(index).fadeIn(1300);
+        $(".bannerTwo a").eq(index).siblings().fadeOut(1300)
+        i = index
+    });
+    //获取标示
+    //点击右边按钮
+    function rightMethod() {
+        if (i + 1 == $(".tag button").length) {
+            console.log("执行");
+            i = -1
+        }
+        $(".tag button").eq(i + 1).siblings().removeClass("active");
+        $(".tag button").eq(i + 1).addClass("active");
+        i = i + 1;
+        $(".bannerTwo a").eq(i).fadeIn(1300);
+        $(".bannerTwo a").eq(i).siblings().fadeOut(1300)
+    }
+    //点击左边按钮
+    $(".left").bind("click", function () {
+        if (i == -1) {
+            console.log("执行");
+            i = 5
+        }
+        console.log(i);
+        $(".tag button").eq(i - 1).siblings().removeClass("active");
+        $(".tag button").eq(i - 1).addClass("active");
+        i = i - 1;
+        $(".bannerTwo a").eq(i).fadeIn(1300);
+        $(".bannerTwo a").eq(i).siblings().fadeOut(1300)
+
+    });
+    //自动轮播
+    var AutomaticScroll = setInterval(automatic, 1500);
+
+    function automatic() {
+        if (i == $(".tag button").length) {
+            i = -1
+        }
+        $(".tag button").eq(i + 1).siblings().removeClass("active");
+        $(".tag button").eq(i + 1).addClass("active");
+        i = i + 1;
+        $(".bannerTwo a").eq(i).fadeIn(1300);
+        $(".bannerTwo a").eq(i).siblings().fadeOut(1300)
+    }
+    $(".banner").hover(
+        function () {
+            clearInterval(AutomaticScroll);
+        }, function () {
+            AutomaticScroll = setInterval(automatic, 1500);
+        });
+        //有省略号就展示查看更多按钮
+    $(".noticeBody p").each(function () {
+        var a=$(this).height();
+        if (a>74.545){
+            $(this).next().fadeIn(0)
+        }else{
+            $(this).next().fadeOut(0)
+        }
+    });
+    ii=0;
+    {% for a  in bossMessage %}
+        if(ii<5){
+        console.log("{{ a.companyName }}");
+        var eleDiv=$("<div></div>");
+        var eleSpan=$("<span></span>");
+        var eleACom=$("<a></a>");
+        eleACom.text("{{ a.companyName }}");
+        var eleAMon=$("<a></a>");
+        eleAMon.text("{{ a.trickMoney }}/月");
+        var eleP=$("<p></p>");
+        var eleSpan1=$("<span></span>");
+        eleSpan1.text("{{ a.tables_one }}");
+        var eleSpan2=$("<span></span>");
+        eleSpan2.text("{{ a.tables_two }}");
+        var eleSpan3=$("<span></span>");
+        eleSpan3.text("{{ a.tables_three }}");
+
+        eleACom.attr("id","complateName");
+        eleAMon.attr("id","money");
+        eleP.attr("id","label");
+        eleAMon.addClass("glyphicon glyphicon-yen");
+
+
+        eleDiv.append(eleSpan);
+        eleDiv.append(eleP);
+        eleSpan.append(eleACom);
+        eleSpan.append(eleAMon);
+        eleP.append(eleSpan1,eleSpan2,eleSpan3);
+
+        $(".bossMessage").append(eleDiv);
+        ii+=1;}
+
+    {% endfor %}
+
+    for (var listN=0;listN<$(".students").children().length;listN++){
+
+        var ele=$(".students").children().eq(listN);
+        ele.children("p").eq(0).addClass("p1");
+        ele.children("p").eq(1).addClass("glyphicon glyphicon-yen p2");
+        switchCode(listN)
+    }
+
+
+    $(".students .student img").mouseover(function () {
+        var uid=$(this).parent().index() ;
+           console.log(uid);
+        $.ajax({
+           url: "{% url 'updateStudentMessage' %}",
+            type:"POST",
+            data:{"uid":uid},
+            success:function (arg) {
+                data=JSON.parse(arg);
+                console.log(data);
+{#                console.log({{ studentsMessage.0 }});#}
+                console.log(data.studentImage);
+                $(".moreMessageImage img").attr("src","/"+data.studentImage);
+                $(".moreMessageImage").children("p").eq(0).text(data.studentMoney+".00");
+                $(".moreMessageImage").children("p").eq(1).text(data.studentCompany);
+                $(".messageContent .name").text(data.studentName);
+                if (data.studentSex==1){
+                    $(".messageContent .leve").text("女");
+                }else {
+                    $(".messageContent .leve").text("男");
+                }
+
+                $(".messageContent .content").text(data.studentContent);
+            }
+        });
+{#        var  img=$(this).children("img").attr("src");#}
+{#        var money=$(this).children("p").eq(1).text();#}
+{#        var company=$(this).children("p").eq(0).text();#}
+
+
+
+    });
+
+
+    $(".schoolLifeImage div").hover(function () {
+        console.log($(this).index());
+        $(this).children("img").attr("src","{% static 'files/classSay/微信图片_20190331222329.jpg' %}")
+    },function () {
+        $(this).children("img").attr("src","{% static 'files/classSay/微信图片_20190331222323.jpg' %}")
+        }
+    );
+    {% endblock %}
+
+
+
+    {% block script %}
+        $(".head-text a").eq(0).css("background-color","red");
+    {% endblock %}
+
+</script>
+</html>

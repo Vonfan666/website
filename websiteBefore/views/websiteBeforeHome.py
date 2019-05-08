@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# @File:.py
+# -*- coding:utf-8 -*-
+# @Author:von_fan
 from  django.shortcuts import render_to_response,render,redirect,HttpResponse
 from  websiteBefore import models
 import  json
@@ -23,9 +27,9 @@ def  home(req):
             print(a.content)
         print(list)
 
-        classSay=models.ClassSay.objects.filter().order_by("id").reverse()
+        classSay_list=models.ClassSay.objects.filter().order_by("id").reverse()
         classSayImageData=[]
-        for   b in  classSay:
+        for   b in  classSay_list:
             print(b.classSayName)
             print(b.classSayContent)
             print(b.classSayImage)

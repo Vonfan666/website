@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+# @File:.py
+# -*- coding:utf-8 -*-
+# @Author:von_fan
 class Pagination():
     def __init__(self,totalCount,currentPage,perPageNum=6,allPageNum=11):
         self.totalCount=totalCount  #数据总个数 total_count

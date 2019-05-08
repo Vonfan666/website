@@ -1,7 +1,11 @@
+#!/usr/bin/python3
+# @File:.py
+# -*- coding:utf-8 -*-
+# @Author:von_fan
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url
-from  websiteBefore.views import websiteBeforeHome
+from websiteBefore.views import websiteBeforeHome
 
 urlpatterns = [
     url(r"home/",websiteBeforeHome.home,name="home"),

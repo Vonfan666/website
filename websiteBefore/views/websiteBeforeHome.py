@@ -66,6 +66,9 @@ def  home(req):
             print(studentsMessage[0].studentImage.path)
             print(type(studentsMessage[0].studentImage))
 
+            
+
+
 
 
 

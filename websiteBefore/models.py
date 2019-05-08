@@ -69,7 +69,7 @@ class Direction(models.Model):
         return self.name
     weight=models.IntegerField(verbose_name="权重(按从大到小排列)",default=0)
     name=models.CharField(verbose_name="名称",max_length=32)
-    classification=models.ManyToManyField("Classification")
+    classifications=models.ManyToManyField("Classification")
 
     class Meta:
         db_table="Direction"
@@ -118,7 +118,7 @@ class Video(models.Model):
     level=models.ForeignKey(Level,on_delete="CASCADE")
 
     weight=models.IntegerField(verbose_name="权重（按从大到小排列）")
-    classification=models.ForeignKey("Classification",null=True,blank=True,on_delete="CASCADE")
+    classification_video=models.ForeignKey("Classification",null=True,blank=True,on_delete="CASCADE")
 
     title=models.CharField(verbose_name="标题",max_length=32)
     summary=models.CharField(verbose_name="简介",max_length=32)

@@ -167,7 +167,7 @@
 
                     {% for  b  in  list_classification %}
 
-                        <a id="t{{ b.classification__id  }}" href="{% url 'onlineVideo' %}?uid={{ b.id }}&cid={{ b.classification__id }}&lid={{ lid }}&pid=1">{{ b.classification__name }}</a>
+                        <a id="t{{ b.classifications__id  }}" href="{% url 'onlineVideo' %}?uid={{ b.id }}&cid={{ b.classifications__id }}&lid={{ lid }}&pid=1">{{ b.classifications__name }}</a>
                     {% endfor %}
                 {% else %}
                     {% for  bb  in  list_classification_data %}
@@ -186,7 +186,7 @@
                     {% if cid %}
                         <a id="t{{ c.id }}" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{ cid }}&lid={{ c.id }}&pid=1">{{ c }}</a>
                     {% else %}
-                        <a id="t{{ c.id }}" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{  list_classification.0.classification__id }}&lid={{ c.id }}&pid=1">{{ c }}</a>
+                        <a id="t{{ c.id }}" href="{% url 'onlineVideo' %}?uid={{ uid }}&cid={{  list_classification.0.classifications__id }}&lid={{ c.id }}&pid=1">{{ c }}</a>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -285,10 +285,6 @@
             $(this).attr("href",href);
 
         });
-
-
-
-
     {% endblock %}
 
 

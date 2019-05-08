@@ -151,10 +151,10 @@ def  onlineVideo(req):
     # data=models.classification.objects.fi
         list_direction_data = models.Direction.objects.all()
 
-        list_direction_nub = models.Direction.objects.all().values("classification__id")
+        list_direction_nub = models.Direction.objects.all().values("classifications__id")
         print(list_direction_nub)
-        list_classification = models.Direction.objects.all().values("classification__name",
-                                                                             "classification__id", "id")
+        list_classification = models.Direction.objects.all().values("classifications__name",
+                                                                             "classifications__id", "id")
         list_classification_data = models.Classification.objects.all()
         list_level = models.Level.objects.all()
         if  int(cid)==0:
@@ -168,40 +168,40 @@ def  onlineVideo(req):
                 list_video = models.Video.objects.filter(level_id=int(lid),status=1)
         else:
             if int(lid) == 0:
-                list_video = models.Video.objects.filter(classification_id=int(cid), status=1)
+                list_video = models.Video.objects.filter(classification_video_id=int(cid), status=1)
             else:
 
-                list_video = models.Video.objects.filter(classification_id=int(cid),level_id=int(lid),status=1)
+                list_video = models.Video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
     else:
 
         uid = int(req.GET.get("uid"))
         # data=models.classification.objects.fi
         list_direction_data=models.Direction.objects.all()
 
-        list_direction_nub = models.Direction.objects.filter(id=uid).values("classification__id")
+        list_direction_nub = models.Direction.objects.filter(id=uid).values("classifications__id")
         print(list_direction_nub)
-        list_classification=models.Direction.objects.filter(id=uid).values("classification__name","classification__id","id")
+        list_classification=models.Direction.objects.filter(id=uid).values("classifications__name","classifications__id","id")
         list_classification_data = models.Classification.objects.all()
         list_level = models.Level.objects.all()
         if  int(cid)==0:
             if  int(lid)==0:
-                cid_list_code = models.Direction.objects.filter(id=uid).values("classification__id")
+                cid_list_code = models.Direction.objects.filter(id=uid).values("classifications__id")
                 list_cid=[]
                 for a in cid_list_code:
-                    cid_code=a['classification__id']
+                    cid_code=a['classifications__id']
                     print(cid_code)
                     list_cid.append(cid_code)
                     print("--------", a)
                 print("cid_list_code", cid_list_code)
-                list_video = models.Video.objects.filter(status=1,classification_id__in=list_cid)
+                list_video = models.Video.objects.filter(status=1,classification_video_id__in=list_cid)
             else:
                 list_video = models.Video.objects.filter(level_id=int(lid),status=1)
         else:
             if int(lid) == 0:
-                list_video = models.Video.objects.filter(classification_id=int(cid),status=1)
+                list_video = models.Video.objects.filter(classification_video_id=int(cid),status=1)
             else:
 
-                list_video = models.Video.objects.filter(classification_id=int(cid),level_id=int(lid),status=1)
+                list_video = models.Video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
 
 
 

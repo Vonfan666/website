@@ -7,12 +7,12 @@ from django.contrib import admin
 # Register your models here.
 from  websiteBefore import models
 
-admin.site.register(models.New_message)
-admin.site.register(models.ClassSay)
-admin.site.register(models.TrickMessage)
-admin.site.register(models.StudentMessage)
-admin.site.register(models.teacherMessage)
-admin.site.register(models.Direction)
-admin.site.register(models.Classification)
-admin.site.register(models.Level)
-admin.site.register(models.Video)
+admin.site.register(models.new_message)
+admin.site.register(models.classsay)
+admin.site.register(models.trickmessage)
+admin.site.register(models.studentmessage)
+admin.site.register(models.teachermessage)
+admin.site.register(models.direction)
+admin.site.register(models.classification)
+admin.site.register(models.level)
+admin.site.register(models.video)

@@ -4,32 +4,34 @@
 # @Author:von_fan
 from  django.shortcuts import render_to_response,render,redirect,HttpResponse
 from  websiteBefore import models
-import  json
+import  json,os
 
 from  websiteBefore.methodAction.PageMethod import Pagination
 
 def  image(image):
     classSayImage2 = image.path
-    classSayImage3 = classSayImage2.split("\\")
+    classSayImage3 = classSayImage2.split("%s"%os.sep)
     print(33, classSayImage3)
     m = classSayImage3.index("static")
     print(classSayImage3[m:])
-    classImageCode = "/".join(classSayImage3[m:])
+    classImageCode = "%s"%os.sep.join(classSayImage3[m:])
     return classImageCode
 
 def  home(req):
     print(req.method)
     if req.method=="GET":
-        list=models.New_message.objects.filter().order_by("id").reverse()
+        list=models.new_message.objects.filter().order_by("id").reverse()
         for  a  in  list:
             print(a.id)
             print(a.title)
             print(a.content)
         print(list)
 
-        classSay_list=models.ClassSay.objects.filter().order_by("id").reverse()
+        classSay=models.classsay.objects.filter().order_by("id").reverse()
         classSayImageData=[]
-        for   b in  classSay_list:
+        bossMessageList=None
+        studentsMessage=None
+        for   b in  classSay:
             print(b.classSayName)
             print(b.classSayContent)
             print(b.classSayImage)
@@ -37,24 +39,25 @@ def  home(req):
             print(type(classSayImage1))
             print(classSayImage1.path)
             classSayImage2=classSayImage1.path
-            classSayImage3=classSayImage2.split("\\")
-            print(classSayImage3)
+            classSayImage3=classSayImage2.split("%s"%os.sep)
+            print("1111111111111111111111111111111111",classSayImage3)
             m=classSayImage3.index("static")
             print(classSayImage3[m+1:])
-            classImageCode="/".join(classSayImage3[m+1:])
+            classImageCode="%s"%os.sep.join(classSayImage3[m+1:])
             classSayImageData.append(classImageCode)
 
 
             # classSayImage2=classSayImage1.split("/")
             # classSayImage2="/".join(classSayImage2[1:])
             # print(classSayImage2)
-            bossMessageList = models.TrickMessage.objects.all()
+
+            bossMessageList = models.trickmessage.objects.all()
             print(bossMessageList[0].companyName)
 
 
 
             #底部学院图片以及信息
-            studentsMessage=models.StudentMessage.objects.all()
+            studentsMessage=models.studentmessage.objects.all()
             print("*********************************")
             print(studentsMessage[0])
             print(studentsMessage)
@@ -62,6 +65,7 @@ def  home(req):
             print("-------------------------------------")
             print(studentsMessage[0].studentImage.path)
             print(type(studentsMessage[0].studentImage))
+
 
 
 
@@ -76,16 +80,16 @@ def  updateStudentMessage(req):
     uid=int(req.POST.get("uid"))
 
     print(uid,type(uid))
-    list=models.StudentMessage.objects.filter(id=uid+1)
+    list=models.studentmessage.objects.filter(id=uid+1)
     print(list)
     data={}
     for  a  in  list:
         classSayImage2=a.studentImage.path
-        classSayImage3 = classSayImage2.split("\\")
+        classSayImage3 = classSayImage2.split("%s"%os.sep)
         print(33,classSayImage3)
         m = classSayImage3.index("static")
         print(classSayImage3[m:])
-        classImageCode = "/".join(classSayImage3[m:])
+        classImageCode = "%s"%os.sep.join(classSayImage3[m:])
         print(classImageCode)
         data["studentName"]=a.studentName
         data["studentContent"] = a.studentContent
@@ -112,7 +116,7 @@ def  updateStudentMessage(req):
 
 
 def  teacherTeam(req):
-    data=models.teacherMessage.objects.filter(id__lt=6)
+    data=models.teachermessage.objects.filter(id__lt=10)
 
     return render_to_response("teacherTeam.html",locals())
 
@@ -121,7 +125,7 @@ def  studentWork(req):
 
 def  studentWorkMessage(req):
     data={"list":[]}
-    studentsMessage = models.StudentMessage.objects.all()
+    studentsMessage = models.studentmessage.objects.all()
     i=0
     for  a  in  studentsMessage:
         data["list"].append({})
@@ -153,43 +157,43 @@ def  onlineVideo(req):
     if uid=="0":
         uid = int(req.GET.get("uid"))
     # data=models.classification.objects.fi
-        list_direction_data = models.Direction.objects.all()
+        list_direction_data = models.direction.objects.all()
 
-        list_direction_nub = models.Direction.objects.all().values("classifications__id")
+        list_direction_nub = models.direction.objects.all().values("classifications__id")
         print(list_direction_nub)
-        list_classification = models.Direction.objects.all().values("classifications__name",
+        list_classification = models.direction.objects.all().values("classifications__name",
                                                                              "classifications__id", "id")
-        list_classification_data = models.Classification.objects.all()
-        list_level = models.Level.objects.all()
+        list_classification_data = models.classification.objects.all()
+        list_level = models.level.objects.all()
         if  int(cid)==0:
             if  int(lid)==0:
-                # cid_list_code=models.Direction.objects.all().values("classification__id")
+                # cid_list_code=models.direction.objects.all().values("classification__id")
                 # for a  in  cid_list_code:
                 #     print("--------",a)
                 # print("cid_list_code",cid_list_code)
-                list_video = models.Video.objects.filter(status=1)
+                list_video = models.video.objects.filter(status=1)
             else:
-                list_video = models.Video.objects.filter(level_id=int(lid),status=1)
+                list_video = models.video.objects.filter(level_id=int(lid),status=1)
         else:
             if int(lid) == 0:
-                list_video = models.Video.objects.filter(classification_video_id=int(cid), status=1)
+                list_video = models.video.objects.filter(classification_video_id=int(cid), status=1)
             else:
 
-                list_video = models.Video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
+                list_video = models.video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
     else:
 
         uid = int(req.GET.get("uid"))
         # data=models.classification.objects.fi
-        list_direction_data=models.Direction.objects.all()
+        list_direction_data=models.direction.objects.all()
 
-        list_direction_nub = models.Direction.objects.filter(id=uid).values("classifications__id")
+        list_direction_nub = models.direction.objects.filter(id=uid).values("classifications__id")
         print(list_direction_nub)
-        list_classification=models.Direction.objects.filter(id=uid).values("classifications__name","classifications__id","id")
-        list_classification_data = models.Classification.objects.all()
-        list_level = models.Level.objects.all()
+        list_classification=models.direction.objects.filter(id=uid).values("classifications__name","classifications__id","id")
+        list_classification_data = models.classification.objects.all()
+        list_level = models.level.objects.all()
         if  int(cid)==0:
             if  int(lid)==0:
-                cid_list_code = models.Direction.objects.filter(id=uid).values("classifications__id")
+                cid_list_code = models.direction.objects.filter(id=uid).values("classifications__id")
                 list_cid=[]
                 for a in cid_list_code:
                     cid_code=a['classifications__id']
@@ -197,15 +201,15 @@ def  onlineVideo(req):
                     list_cid.append(cid_code)
                     print("--------", a)
                 print("cid_list_code", cid_list_code)
-                list_video = models.Video.objects.filter(status=1,classification_video_id__in=list_cid)
+                list_video = models.video.objects.filter(status=1,classification_video_id__in=list_cid)
             else:
-                list_video = models.Video.objects.filter(level_id=int(lid),status=1)
+                list_video = models.video.objects.filter(level_id=int(lid),status=1)
         else:
             if int(lid) == 0:
-                list_video = models.Video.objects.filter(classification_video_id=int(cid),status=1)
+                list_video = models.video.objects.filter(classification_video_id=int(cid),status=1)
             else:
 
-                list_video = models.Video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
+                list_video = models.video.objects.filter(classification_video_id=int(cid),level_id=int(lid),status=1)
 
 
 
